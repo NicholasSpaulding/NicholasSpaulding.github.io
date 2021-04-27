@@ -113,7 +113,7 @@
           <h2 data-id="code-title">Sample Html Code</h2>
           <pre
             data-id="code-animation"
-          ><code class="hljs" data-trim data-line-numbers="|2,5,11|6,12|16,17"><script type="text/template">
+          ><code class="hljs" data-trim data-line-numbers="|2,5,11|6,12|16"><script type="text/template">
 			  <!-- Table -->
 			<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -152,7 +152,7 @@
 
 				  export class TodoManagementComponent implements OnInit {
 					public dataSource = new MatTableDataSource();
-					displayedColumns: string[] = [ "name", "duedate", "types", "complete", "delete", "edit" ];
+					displayedColumns: string[] = [ "name", "duedate" ];
 
 					@ViewChild(MatSort, { static: true }) sort: MatSort;
 
