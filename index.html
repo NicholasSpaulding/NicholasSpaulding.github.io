@@ -1,40 +1,229 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-		<title>reveal.js</title>
+    <title>reveal.js – The HTML Presentation Framework</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <meta
+      name="description"
+      content="A framework for easily creating beautiful presentations using HTML"
+    />
+    <meta name="author" content="Hakim El Hattab" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/moon.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+      <!-- Introduction Slide -->
+      <div class="slides">
+        <section>
+          <h1>Angular Material</h1>
+          <img
+            src="images/AngularMaterial.png"
+            alt="reveal.js logo"
+            style="
+              height: 300px;
+              margin: 0 auto 4rem auto;
+              background: transparent;
+            "
+            class="demo-logo"
+          />
+          <p>
+            <small>Presented By Nicholas Spaulding</small>
+          </p>
+        </section>
+
+        <!-- Sumary of Angular Material Slide -->
+        <section
+          data-transition="slide"
+          data-background-transition="zoom"
+          id="fragments"
+        >
+          <h2>What is Angular Material?</h2>
+          <p class="fragment">
+            - Essentially, it is a library that combines Angular components with
+            material design styling to enhance, both the look, and the
+            functionality of any Angular project.
+          </p>
+          <p class="fragment fade-in-then-out">- Unlike Bootstrap</p>
+          <h2 class="fragment fade-in" style="color: rgb(71, 83, 245)">
+            CSS Styling &plus; Components
+          </h2>
+        </section>
+
+        <!-- Uses cases for Angular Material Slide -->
+        <section data-transition="slide" data-background-transition="zoom">
+          <h2>Popular Uses</h2>
+          <dl>
+            <dt>Styling</dt>
+            <dd class="fragment">- Themes</dd>
+            <dd class="fragment">- Responsive Layouts</dd>
+            <dd class="fragment">- Animation</dd>
+            <dt>Components</dt>
+            <dd class="fragment">- Buttons</dd>
+            <dd class="fragment">- Inputs</dd>
+            <dd class="fragment">- Tables</dd>
+            <dd class="fragment">- So much more...</dd>
+          </dl>
+        </section>
+
+        <!-- Show available components -->
+        <section
+          data-background-video="images/materialComponents.mp4"
+          data-background-color="#000000"
+          data-background-video-loop
+          data-background-video-muted
+          id="fragments"
+        ></section>
+
+        <!-- My particluar use case for Angular Material Slide -->
+        <section data-transition="slide" data-background-transition="zoom">
+          <h2>Project 4 Use</h2>
+          <p class="fragment">I used the Angular Material to:</p>
+          <ol>
+            <li class="fragment">Make the Todo table</li>
+            <li class="fragment">Sort the Todo table</li>
+            <li class="fragment">Filter the Todo table</li>
+          </ol>
+        </section>
+
+        <!-- Code sample -->
+        <section data-auto-animate>
+          <h2 data-id="code-title">Sample Html Code</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="|2,5,11|6,12|16,17"><script type="text/template">
+			  <!-- Table -->
+			<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+				<!-- Name Column -->
+				<ng-container matColumnDef="name">
+					<mat-header-cell mat-sort-header> Task </mat-header-cell>
+					<mat-cell *matCellDef="let todo"> {{ todo.name }} </mat-cell>
+				</ng-container>
+
+				<!-- Date Column -->
+				<ng-container matColumnDef="duedate">
+					<mat-header-cell mat-sort-header> Due Date </mat-header-cell>
+					<mat-cell> {(todo.duedate)} </mat-cell>
+				</ng-container>
+
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+			</mat-table>
+		</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Sample JS Code</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="|1,2|11,12|14,18-19"><script type="text/template">
+				import { Component, OnInit, ViewChild } from "@angular/core";
+				import { MatTableDataSource, MatSort } from "@angular/material";
+
+				@Component({
+					selector: "app-todo-management",
+					templateUrl: "./todo-management.component.html",
+					styleUrls: ["./todo-management.component.css"],
+				  })
+
+				  export class TodoManagementComponent implements OnInit {
+					public dataSource = new MatTableDataSource();
+					displayedColumns: string[] = [ "name", "duedate", "types", "complete", "delete", "edit" ];
+
+					@ViewChild(MatSort, { static: true }) sort: MatSort;
+
+					constructor() {}
+
+					applyFilter(filterString: string) {
+						this.dataSource.filter = filterString.trim().toLowerCase();
+					  }
+				  }
+					  </script></code></pre>
+        </section>
+
+        <!-- Table and Filter Demo -->
+        <section
+          data-background-video="images/angMatDemo.mp4"
+          data-background-color="#000000"
+          data-background-video-loop
+          data-background-video-muted
+          id="fragments"
+        >
+          <div
+            style="
+              background-color: rgba(0, 0, 0, 0.9);
+              color: #fff;
+              padding: 20px;
+            "
+            class="fragment fade-out"
+          >
+            <h2>Simple Demo</h2>
+          </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section data-transition="slide" data-background-transition="zoom">
+          <h1>Conclusion</h1>
+          <h3 class="fragment fragment-grow">
+            - If you're stuck, use Angular Material to meet project
+            requirements.
+          </h3>
+        </section>
+
+        <section>
+          <h2>The End</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // Also available as an ES module, see:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+        ],
+      });
+    </script>
+  </body>
 </html>
